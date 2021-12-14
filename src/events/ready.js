@@ -7,9 +7,9 @@ module.exports = client => {
 
 	setInterval(() => {
 		const statusMessages = [
-			`${client.config.prefix}help  |  ${client.guilds.cache.size} 서버`,
-			`${client.config.prefix}help  |  ${client.users.cache.size} 사용자`,
-			`${client.config.prefix}help  |  ${client.config.developer} 개발`,
+			`${client.config.prefix}help    |    ${client.guilds.cache.size} 서버`,
+			`${client.config.prefix}help    |    ${client.users.cache.size} 사용자`,
+			`${client.config.prefix}help    |    ${client.config.developer} 개발`,
 		];
 		const index = Math.floor(Math.random() * statusMessages.length);
 		client.user.setActivity(statusMessages[index], { type: statusType });
