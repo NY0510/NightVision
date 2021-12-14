@@ -1,0 +1,9 @@
+{
+	"apps": [
+		{
+			"name": "NightVision",
+			"script": "./app.js",
+			"watch": true
+		}
+	]
+}

@@ -1,0 +1,15 @@
+[
+	{ "name": "ping", "shortDescription": "핑-퐁! 봇의 지연시간을 알려줘요", "fullDescription": "**봇 지연시간**과 **디스코드 API 지연시간**을 보여줘요" },
+	{ "name": "help", "shortDescription": "지금 보고있는 이 도움말을 보여줘요", "fullDescription": "도움말 도움말 도움말 도움말 도움말 도움말" },
+	{ "name": "ipinfo (IP)", "shortDescription": "해당 IP에 대한 정보를 보여줘요", "fullDescription": "**[API](https://ipinfo.io/)**를 사용했습니다" },
+	{
+		"name": "kogpt2 (텍스트) (최소길이)",
+		"shortDescription": "입력받은 텍스트를 기반으로 문장을 생성해줘요",
+		"fullDescription": "**SKT-AI**의 **[KoGPT2](https://github.com/skt-ai/kogpt2)**를 사용했습니다"
+	},
+	{
+		"name": "adultimg (이미지 URL)",
+		"shortDescription": "입력받은 이미지가 성인 이미지인지 판단해줘요",
+		"fullDescription": "**Kakao Vision**의 **[Recog-Adult-Content](https://developers.kakao.com/docs/latest/ko/vision/dev-guide#recog-adult-content)**를 사용했습니다"
+	}
+]

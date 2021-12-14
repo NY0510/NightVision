@@ -1,0 +1,22 @@
+{
+	"name": "",
+	"token": "",
+	"prefix": "",
+	"owners": [],
+	"developer": "",
+	"version": "0.0.1",
+	"api": { "ipinfo": "", "eval": "", "adult_img": "" },
+	"color": { "normal": "0x28E212", "error": "0xFF3333" },
+	"emoji": {
+		"error": "",
+		"cheak": "",
+		"x": "",
+		"wait": "",
+		"terminal": "",
+		"warning": ""
+	},
+	"status": {
+		"type": "PLAYING",
+		"interval": 10000
+	}
+}

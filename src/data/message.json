@@ -1,0 +1,53 @@
+{
+	"global.embed.prettyValue": " ┕**`${0}`**",
+
+	"error.permission.onlyOwner.title": "${0} 이런! 이 명령어를 실행할 **권한**이 없으시군요",
+	"error.permission.onlyOwner.description": "이 명령어는 봇 관리자 전용이에요!",
+	"error.command.notExist": "**`흠.. 없는 명령어 같아요`**",
+	"error.command.missingArgument.title": "${0} **올바른** 명령어를 입력해 주세요",
+	"error.command.missingArgument.description": "명령어의 필수 옵션이 누락되었습니다",
+
+	"command.ping.loadingLatency": "**Loding Data...**",
+	"command.ping.pong": "🏓 Pong!",
+	"command.ping.botLatency": "⏱️ **`Bot Latency: ${0}ms`**",
+	"command.ping.apiLatency": "⌛ **`API Latency: ${0}ms`**",
+
+	"command.reload.error.moduleNotExist": "${0} 이런, **${1}**은(는) 존재하지 않는 모듈입니다",
+	"command.reload.success": "${0} **${1}**모듈 리로드 완료!",
+
+	"command.ipinfo.title": "IP InFo",
+	"command.ipinfo.field.ip": "📶 IP",
+	"command.ipinfo.field.country": "🌏 국가",
+	"command.ipinfo.field.region": "🗺️ 지역",
+	"command.ipinfo.field.loc": "📍 좌표",
+	"command.ipinfo.field.org": "📡 ISP",
+	"command.ipinfo.field.timezone": "🕐 타임존",
+	"command.ipinfo.error.invalidIP": "${0} **${1}**는 유효한 IP가 아닙니다",
+
+	"command.eval.title": "${0} Eval",
+	"command.eval.supportLanguageList": "**지원하는 언어 목록**",
+	"command.eval.field.input": "📥 Input",
+	"command.eval.field.output": "📤 Output",
+	"command.eval.field.fileReference": "```${0} 참조```",
+	"command.eval.field.timeTaken": "⌛ 소요시간: ${0}ms",
+	"command.eval.error.notSupportLanguage.title": "${0} **${1}**은(는) 지원하지 않는 언어입니다",
+	"command.eval.error.notSupportLanguage.description": "**`${0}eval lang`**으로 지원하는 언어 목록을 확인해 보세요",
+
+	"command.help.title": "🎯 Help",
+	"command.help.moreInformation": "${0}help **(명령어)**를 사용해 **각 명령어별 자세한 사용법**을 확인할 수 있어요",
+	"command.help.moreInformation.title": "🎯 Help For ${0}",
+	"command.help.inviteLink": "📎 **[봇 초대링크](https://discord.com/oauth2/authorize?client_id=${0}&permissions=0&scope=bot)**",
+	"command.help.error.commandNotExist.title": "${0} **${1}**은(는) 존재하지 않는 명령어입니다",
+	"command.help.error.commandNotExist.description": "**`${0}help`**명령어로 명령어 리스트를 확인해 보세요",
+
+	"command.kogpt2.title": "📰 KoGPT2",
+	"command.kogpt2.field.input": "📥 Input",
+	"command.kogpt2.field.output": "📤 Output",
+
+	"commands.adultimg.title": "${0} 성인 이미지 판별",
+	"commands.adultimg.result.normal": "${0} **`일반적인 이미지일 확률: ${1}%`**",
+	"commands.adultimg.result.soft": "${0} **`노출이 포함된 이미지일 확률: ${1}%`**",
+	"commands.adultimg.result.adult": "${0} **`성인 이미지일 확률: ${1}%`**",
+	"commands.adultimg.error.notSupportImgUrl.title": "${0} **${1}**은(는) 지원하는 이미지 형식이 아닙니다",
+	"commands.adultimg.error.notSupportImgUrl.discription": "지원하는 이미지 형식: **`PNG, JPG, JPEG`**"
+}
