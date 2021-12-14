@@ -4,6 +4,10 @@ const quickEmbed = require("../module/quickEmbed");
 const request = require("request");
 
 exports.run = async (client, Discord, message, config, args) => {
+	let normal;
+	let soft;
+	let adult;
+
 	if (!args || args.length < 1) return await message.channel.send({ embeds: [quickEmbed.noArgs()] });
 
 	// 확장자 체크
@@ -32,10 +36,22 @@ exports.run = async (client, Discord, message, config, args) => {
 		body: `image_url=${args[0]}`,
 	};
 	request.post(options, async function (error, response, body) {
-		console.log(body);
-		const normal = body.result.normal * 100;
-		const soft = body.result.soft * 100;
-		const adult = body.result.adult * 100;
+		try {
+			normal = body.result.normal * 100;
+			soft = body.result.soft * 100;
+			adult = body.result.adult * 100;
+		} catch (e) {
+			return await message.channel.send({
+				embeds: [
+					createEmbed(
+						getMessage("commands.adultimg.error.notSupportImgUrl.title", config.emoji.x, ext),
+						getMessage("commands.adultimg.error.notSupportImgUrl.discription"),
+						config.color.error,
+						true
+					),
+				],
+			});
+		}
 
 		const data =
 			getMessage("commands.adultimg.result.normal", config.emoji.cheak, normal.toFixed(1)) +
