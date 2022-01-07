@@ -20,6 +20,10 @@ exports.run = async (client, Discord, message, config, args) => {
 	const request = await fetch(`https://ipinfo.io/${ip}?token=${config.api.ipinfo}`);
 	const json = await request.json();
 
+	if (json.country == undefined && json.country == undefined && json.region == undefined && json.city == undefined && json.org == undefined && json.timezone == undefined) {
+		return await message.channel.send({ embeds: [createEmbed(getMessage("command.ipinfo.error.invalidIP", config.emoji.x, ip), null, config.color.error, true)] });
+	}
+
 	const fields = [
 		{
 			name: getMessage("command.ipinfo.field.ip"),
