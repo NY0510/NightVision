@@ -42,14 +42,7 @@ exports.run = async (client, Discord, message, config, args) => {
 			adult = body.result.adult * 100;
 		} catch (e) {
 			return await message.channel.send({
-				embeds: [
-					createEmbed(
-						getMessage("commands.adultimg.error.notSupportImgUrl.title", config.emoji.x, ext),
-						getMessage("commands.adultimg.error.notSupportImgUrl.discription"),
-						config.color.error,
-						true
-					),
-				],
+				embeds: [createEmbed(`${config.emoji.x} 이미지 분석에 실패했습니다`, "잠시 후 다시 시도해 주세요", config.color.error, true)],
 			});
 		}
 
