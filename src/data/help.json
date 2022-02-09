@@ -11,5 +11,6 @@
 		"name": "adultimg (이미지 URL)",
 		"shortDescription": "입력받은 이미지가 성인 이미지인지 판단해줘요",
 		"fullDescription": "**Kakao Vision**의 **[Recog-Adult-Content](https://developers.kakao.com/docs/latest/ko/vision/dev-guide#recog-adult-content)**를 사용했습니다"
-	}
+	},
+	{ "name": "eval (언어) (코드)", "shortDescription": "소스코드를 실행해줘요", "fullDescription": "• **`${prefix}eval lang` -** 지원하는 언어 목록을 보여줘요" }
 ]
