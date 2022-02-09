@@ -1,21 +1,54 @@
-const createEmbed = require("../module/createEmbed");
 const getMessage = require("../module/getMessage");
 const quickEmbed = require("../module/quickEmbed");
+const { MessageEmbed } = require("discord.js");
 const request = require("request");
 const fs = require("fs");
 
-// prettier-ignore
-const langList = ["c","cpp","objective-c","java","kotlin","scala","swift","csharp","go","haskell","erlang","perl","python","python3","ruby","php","bash","r","javascript","coffeescript","vb","cobol","fsharp","d","clojure","elixir","mysql","rust","scheme","commonlisp","plain",];
+const langList = [
+	"c",
+	"cpp",
+	"objective-c",
+	"java",
+	"kotlin",
+	"scala",
+	"swift",
+	"csharp",
+	"go",
+	"haskell",
+	"erlang",
+	"perl",
+	"python",
+	"python3",
+	"ruby",
+	"php",
+	"bash",
+	"r",
+	"javascript",
+	"coffeescript",
+	"vb",
+	"cobol",
+	"fsharp",
+	"d",
+	"clojure",
+	"elixir",
+	"mysql",
+	"rust",
+	"scheme",
+	"commonlisp",
+	"plain",
+];
 
 exports.run = async (client, Discord, message, config, args) => {
 	if (args[0] == "lang") {
-		const e = createEmbed(
-			getMessage("command.eval.title", config.emoji.terminal),
-			getMessage("command.eval.supportLanguageList") + "\n**`" + langList.join("`**, **`") + "`**",
-			config.color.normal,
-			true
-		);
-		return await message.channel.send({ embeds: [e] });
+		return await message.channel.send({
+			embeds: [
+				new MessageEmbed()
+					.setTitle(getMessage("command.eval.title", config.emoji.terminal))
+					.setDescription(getMessage("command.eval.supportLanguageList") + "\n**`" + langList.join("`**, **`") + "`**")
+					.setColor(config.color.normal)
+					.setTimestamp(),
+			],
+		});
 	}
 
 	// args 없을때
@@ -29,12 +62,11 @@ exports.run = async (client, Discord, message, config, args) => {
 	if (langList.indexOf(lang) == -1)
 		return await message.channel.send({
 			embeds: [
-				createEmbed(
-					getMessage("command.eval.error.notSupportLanguage.title", config.emoji.x, lang),
-					getMessage("command.eval.error.notSupportLanguage.description", config.prefix),
-					config.color.error,
-					true
-				),
+				new MessageEmbed()
+					.setTitle(getMessage("command.eval.error.notSupportLanguage.title", config.emoji.x, lang))
+					.setDescription(getMessage("command.eval.error.notSupportLanguage.description", config.prefix))
+					.setColor(config.color.error)
+					.setTimestamp(),
 			],
 		});
 
@@ -67,9 +99,13 @@ exports.run = async (client, Discord, message, config, args) => {
 						value: "```\n" + output.stderr + "\n```",
 					},
 				];
-				const e = createEmbed(getMessage("command.eval.title", config.emoji.terminal), null, config.color.error, true, fields, {
-					text: getMessage("command.eval.field.timeTaken", time),
-				});
+
+				const e = new MessageEmbed()
+					.setTitle(getMessage("command.eval.title", config.emoji.terminal))
+					.setFields(fields)
+					.setColor(config.color.error)
+					.setFooter(getMessage("command.eval.field.timeTaken", time));
+
 				// 6000자 이상이면 output결과 파일로 전송
 				if (e.length > 5999) {
 					const date = new Date().getTime();
@@ -84,9 +120,12 @@ exports.run = async (client, Discord, message, config, args) => {
 							value: getMessage("command.eval.field.fileReference", `${date}.txt`),
 						},
 					];
-					const e = createEmbed(getMessage("command.eval.title", config.emoji.terminal), null, config.color.error, true, fields, {
-						text: getMessage("command.eval.field.timeTaken", time),
-					});
+					const e = new MessageEmbed()
+						.setTitle(getMessage("command.eval.title", config.emoji.terminal))
+						.setFields(fields)
+						.setColor(config.color.error)
+						.setFooter(getMessage("command.eval.field.timeTaken", time));
+
 					return (
 						await message.channel.send({ embeds: [e] }),
 						message.channel.send({ files: [`./src/temp/${date}.txt`] }).then(function () {
@@ -110,9 +149,12 @@ exports.run = async (client, Discord, message, config, args) => {
 					value: "```\n" + output.stdout + "\n```",
 				},
 			];
-			const e = createEmbed(getMessage("command.eval.title", config.emoji.terminal), null, config.color.normal, true, fields, {
-				text: getMessage("command.eval.field.timeTaken", time),
-			});
+
+			const e = new MessageEmbed()
+				.setTitle(getMessage("command.eval.title", config.emoji.terminal))
+				.setFields(fields)
+				.setColor(config.color.normal)
+				.setFooter(getMessage("command.eval.field.timeTaken", time));
 
 			// 6000자 이상이면 output결과 파일로 전송
 			if (e.length > 5999) {
@@ -128,9 +170,11 @@ exports.run = async (client, Discord, message, config, args) => {
 						value: getMessage("command.eval.field.fileReference", `${date}.txt`),
 					},
 				];
-				const e = createEmbed(getMessage("command.eval.title", config.emoji.terminal), null, config.color.normal, true, fields, {
-					text: getMessage("command.eval.field.timeTaken", time),
-				});
+				const e = new MessageEmbed()
+					.setTitle(getMessage("command.eval.title", config.emoji.terminal))
+					.setFields(fields)
+					.setColor(config.color.normal)
+					.setFooter(getMessage("command.eval.field.timeTaken", time));
 				await message.channel.send({ embeds: [e] }),
 					message.channel.send({ files: [`./src/temp/${date}.txt`] }).then(function () {
 						fs.unlinkSync(`./src/temp/${date}.txt`); // 파일 삭제
