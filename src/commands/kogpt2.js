@@ -1,6 +1,6 @@
-const createEmbed = require("../module/createEmbed");
 const getMessage = require("../module/getMessage");
 const quickEmbed = require("../module/quickEmbed");
+const { MessageEmbed } = require("discord.js");
 const request = require("request");
 
 exports.run = async (client, Discord, message, config, args) => {
@@ -33,7 +33,6 @@ exports.run = async (client, Discord, message, config, args) => {
 				value: "**```\n" + output + "\n```**",
 			},
 		];
-		const e = createEmbed(getMessage("command.kogpt2.title"), null, config.color.normal, true, fields);
-		await message.channel.send({ embeds: [e] });
+		await message.channel.send({ embeds: [new MessageEmbed().setTitle(getMessage("command.kogpt2.title")).setColor(config.color.normal).setTimestamp().setFields(fields)] });
 	});
 };

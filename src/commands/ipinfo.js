@@ -1,6 +1,6 @@
-const createEmbed = require("../module/createEmbed");
 const getMessage = require("../module/getMessage");
 const quickEmbed = require("../module/quickEmbed");
+const { MessageEmbed } = require("discord.js");
 const fetch = require("cross-fetch");
 
 exports.run = async (client, Discord, message, config, args) => {
@@ -8,7 +8,6 @@ exports.run = async (client, Discord, message, config, args) => {
 	if (!args || args.length < 1) return await message.channel.send({ embeds: [quickEmbed.noArgs()] });
 	const ip = args[0];
 
-	// prettier-ignorse
 	// ip 유효성 검사
 	if (
 		!ip.match(
@@ -56,5 +55,5 @@ exports.run = async (client, Discord, message, config, args) => {
 			inline: true,
 		},
 	];
-	await message.channel.send({ embeds: [createEmbed(getMessage("command.ipinfo.title"), null, config.color.normal, true, fields)] });
+	await message.channel.send({ embeds: [new MessageEmbed().setTitle(getMessage("command.ipinfo.title")).setColor(config.color.normal).setFields(fields).setTimestamp()] });
 };

@@ -1,4 +1,4 @@
-const createEmbed = require("../module/createEmbed");
+const { MessageEmbed } = require("discord.js");
 const getMessage = require("../module/getMessage");
 
 exports.run = async (client, Discord, message, config, args) => {
@@ -8,7 +8,6 @@ exports.run = async (client, Discord, message, config, args) => {
 		const botLatency = msg.createdTimestamp - message.createdTimestamp;
 		const apiLatency = Math.round(client.ws.ping);
 		const data = getMessage("command.ping.botLatency", botLatency) + "\n" + getMessage("command.ping.apiLatency", apiLatency);
-		const e = createEmbed(getMessage("command.ping.pong"), data, config.color.normal, true); // 핑 측정완료 임베드
-		await msg.edit({ embeds: [e] });
+		await msg.edit({ embeds: [new MessageEmbed().setTitle(getMessage("command.ping.pong")).setDescription(data).setColor(config.color.normal).setTimestamp()] });
 	});
 };

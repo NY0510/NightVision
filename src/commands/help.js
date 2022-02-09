@@ -1,6 +1,6 @@
-const createEmbed = require("../module/createEmbed");
 const getMessage = require("../module/getMessage");
 const helpData = require("../data/help.json");
+const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, Discord, message, config, args) => {
 	const prefix = config.prefix;
@@ -15,12 +15,11 @@ exports.run = async (client, Discord, message, config, args) => {
 		} else {
 			return message.channel.send({
 				embeds: [
-					createEmbed(
-						getMessage("command.help.error.commandNotExist.title", config.emoji.x, args[0]),
-						getMessage("command.help.error.commandNotExist.description", prefix),
-						config.color.error,
-						true
-					),
+					new MessageEmbed()
+						.setTitle(getMessage("command.help.error.commandNotExist.title", config.emoji.x, args[0]))
+						.setDescription(getMessage("command.help.error.commandNotExist.description", prefix))
+						.setColor(config.color.error)
+						.setTimestamp(),
 				],
 			});
 		}
@@ -39,13 +38,5 @@ exports.run = async (client, Discord, message, config, args) => {
 	}
 	fields.push({ name: "\u200B", value: getMessage("command.help.inviteLink", client.user.id) + "\n" + getMessage("command.help.moreInformation", prefix) });
 
-	const e = createEmbed(
-		getMessage("command.help.title"),
-		null,
-		// getMessage("command.help.moreInformation", prefix) + description + getMessage("command.help.inviteLink", client.user.id),
-		config.color.normal,
-		true,
-		fields
-	);
-	await message.channel.send({ embeds: [e] });
+	await message.channel.send({ embeds: [new MessageEmbed().setTitle(getMessage("command.help.title")).setColor(config.color.normal).setFields(fields).setTimestamp()] });
 };

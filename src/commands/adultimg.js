@@ -1,6 +1,6 @@
-const createEmbed = require("../module/createEmbed");
 const getMessage = require("../module/getMessage");
 const quickEmbed = require("../module/quickEmbed");
+const { MessageEmbed } = require("discord.js");
 const request = require("request");
 
 exports.run = async (client, Discord, message, config, args) => {
@@ -15,12 +15,11 @@ exports.run = async (client, Discord, message, config, args) => {
 		const ext = args[0].substr(args[0].lastIndexOf(".") + 1).toUpperCase();
 		return await message.channel.send({
 			embeds: [
-				createEmbed(
-					getMessage("commands.adultimg.error.notSupportImgUrl.title", config.emoji.x, ext),
-					getMessage("commands.adultimg.error.notSupportImgUrl.discription"),
-					config.color.error,
-					true
-				),
+				new MessageEmbed()
+					.setTitle(getMessage("commands.adultimg.error.notSupportImgUrl.title", config.emoji.x, ext))
+					.setDescription(getMessage("commands.adultimg.error.notSupportImgUrl.discription"))
+					.setColor(config.color.error)
+					.setTimestamp(),
 			],
 		});
 	}
@@ -41,9 +40,13 @@ exports.run = async (client, Discord, message, config, args) => {
 			soft = body.result.soft * 100;
 			adult = body.result.adult * 100;
 		} catch (e) {
-			return await message.channel.send({
-				embeds: [createEmbed(`${config.emoji.x} 이미지 분석에 실패했습니다`, "잠시 후 다시 시도해 주세요", config.color.error, true)],
-			});
+			return await message.channel.send([
+				new MessageEmbed()
+					.setTitle(getMessage("commands.adultimg.error.imageAnalysisFailed.title", config.emoji.x))
+					.setDescription(getMessage("commands.adultimg.error.imageAnalysisFailed.discription"))
+					.setColor(config.color.error)
+					.setTimestamp(),
+			]);
 		}
 
 		const data =
@@ -52,6 +55,15 @@ exports.run = async (client, Discord, message, config, args) => {
 			getMessage("commands.adultimg.result.soft", config.emoji.wait, soft.toFixed(1)) +
 			"\n" +
 			getMessage("commands.adultimg.result.adult", config.emoji.x, adult.toFixed(1));
-		await message.channel.send({ embeds: [createEmbed(getMessage("commands.adultimg.title", config.emoji.warning), data, config.color.normal, true, null, null, null, args[0])] });
+		await message.channel.send({
+			embeds: [
+				new MessageEmbed()
+					.setTitle(getMessage("commands.adultimg.title", config.emoji.warning))
+					.setDescription(data)
+					.setColor(config.color.normal)
+					.setTimestamp()
+					.setAouthor(args[0]),
+			],
+		});
 	});
 };
