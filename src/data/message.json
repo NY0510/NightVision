@@ -49,5 +49,7 @@
 	"commands.adultimg.result.soft": "${0} **`노출이 포함된 이미지일 확률: ${1}%`**",
 	"commands.adultimg.result.adult": "${0} **`성인 이미지일 확률: ${1}%`**",
 	"commands.adultimg.error.notSupportImgUrl.title": "${0} **${1}**은(는) 지원하는 이미지 형식이 아닙니다",
-	"commands.adultimg.error.notSupportImgUrl.discription": "지원하는 이미지 형식: **`PNG, JPG, JPEG`**"
+	"commands.adultimg.error.notSupportImgUrl.discription": "지원하는 이미지 형식: **`PNG, JPG, JPEG`**",
+	"commands.adultimg.error.imageAnalysisFailed.title" : "${0} 이미지 분석에 실패했습니다",
+	"commands.adultimg.error.imageAnalysisFailed.discription": "잠시 후 다시 시도해 주세요"
 }
